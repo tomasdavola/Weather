@@ -7,7 +7,6 @@ import {Line} from "react-chartjs-2";
 
 Chart.register(CategoryScale);
 
-// require('dotenv').config();
 const OW_API_KEY="fa3239392b965440e0b799fb5fe5fc36"
 
 function App() {
@@ -100,7 +99,6 @@ function App() {
     setForecast();
     setSnow();
     setChartData();
-    // setPlace(e.target.value);
     setSelectedPlace();
     fetchCity()
   }
@@ -129,13 +127,10 @@ function App() {
             <div className="col">
               <div className="card-body">
                 <h5 className="card-title">{selectedPlace["name"]}, {regionNames.of(selectedPlace["country"])} {convertToTime(currentData["dt"] + currentData["timezone"])}.</h5>
-                {/*<h5 className="card-title text-end">{selectedPlace["name"]}, {regionNames.of(selectedPlace["country"])}.</h5>*/}
                 <p className="card-text">{currentData["weather"]["0"]["description"]}</p>
-                {/*<p className="card-text">{currentData["weather"]["0"]["main"]}</p>*/}
                 {/*1st row*/}
                 <div className="row">
                   <div className="col-md-3">
-                    {/*<p className="card-text"><small className="text-body-secondary">Feels like: {currentData["main"]["feels_like"]}ºC</small></p>*/}
                     <p>Feels like: {currentData["main"]["feels_like"]}ºC</p>
                   </div>
                   <div className="col-md-3">
@@ -151,7 +146,6 @@ function App() {
                 {/*2nd row*/}
                 <div className="row">
                   <div className="col-md-3">
-                    {/*<p className="card-text"><small className="text-body-secondary">Feels like: {currentData["main"]["feels_like"]}ºC</small></p>*/}
                     <p>Sunrise: {convertToTime(currentData["sys"]["sunrise"] + currentData["timezone"])}</p>
                   </div>
                   <div className="col-md-3">
@@ -168,10 +162,6 @@ function App() {
                   updated {getMinutes(currentData["dt"])} mins ago</small></p>
               </div>
             </div>
-            {/*<div className="col-md-4">*/}
-            {/*  <img src="..." className="img-fluid rounded-start" alt="..."/>*/}
-            {/*</div>*/}
-
           </div>
         </div>
       </>);
@@ -264,7 +254,7 @@ function App() {
 
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12;
     hours = hours.toString().padStart(2, '0');
 
     const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
@@ -274,12 +264,10 @@ function App() {
   function convertToChartTime(epoch) {
     const date = new Date(epoch * 1000);
     let hours = date.getUTCHours();
-    // const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-    // const seconds = date.getUTCSeconds().toString().padStart(2, '0');
 
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12;
     hours = hours.toString().padStart(2, '0');
 
     const timeString = `${hours} ${ampm}`;
@@ -355,7 +343,6 @@ function App() {
           <ProcessData/>
           <Buttons/>
           <LineChart/>
-          {/*testing*/}
         </>
     );
   }
